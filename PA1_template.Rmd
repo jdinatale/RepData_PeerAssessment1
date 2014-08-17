@@ -1,13 +1,33 @@
 # Reproducible Research: Peer Assessment 1
 
-
 ## Loading and preprocessing the data
 
+First, unzip the data file and read it into R. Add a new column which converts the interval from military time to minutes since midnight.
 
+```{r}
+unzip("activity.zip")
+activity <- read.csv("activity.csv", colClasses = c("integer", "Date", "integer"))
+activity$intervalminutes <- activity$interval %/% 100 * 60 + activity$interval %% 100
+```
 
 ## What is mean total number of steps taken per day?
 
+Calculate total steps per day, plot a histogram and report mean and median
 
+```{r}
+dailysteps <- aggregate(steps~date, data = activity, FUN = "sum")
+hist(dailysteps$steps, main = "Histogram of Total Steps per Day", xlab = "Total Steps per Day")
+```
+
+Mean steps per day:
+```{r}
+mean(dailysteps$steps)
+```
+
+Median steps per day:
+```{r}
+median(dailysteps$steps)
+```
 
 ## What is the average daily activity pattern?
 
