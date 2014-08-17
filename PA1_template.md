@@ -124,7 +124,7 @@ median(dailysteps$steps)
 ## [1] 10641
 ```
 
-Because there were 8 days which were not included in the initial analysis because they had no data, replacing these with average values for each interval caused a slight decrease in the  mean and median values. Summing up the average steps per interval (calculated above) gives
+Since there were 8 days which were not included in the initial analysis because they had no data, replacing these with average values for each interval caused a slight decrease in the  mean and median values. Summing up the average steps per interval (calculated above) gives
 
 
 ```r
@@ -154,7 +154,7 @@ Create a plot comparing activity patterns for weekdays vs. weekends (requires la
 ```r
 library("lattice")
 xyplot(steps~intervalminutes | weekend, data = avgsteps, layout = c(1, 2), type = "l", xlab = "Minutes", 
-       ylab = "Average Number of Steps", main = "Average Daily Activity - Weekends ve Weekdays")
+       ylab = "Average Number of Steps", main = "Average Daily Activity - Weekends vs Weekdays")
 ```
 
 ![plot of chunk daily2](figure/daily2.png) 
