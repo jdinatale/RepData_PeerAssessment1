@@ -14,7 +14,7 @@ activity$intervalminutes <- activity$interval %/% 100 * 60 + activity$interval %
 
 Calculate total steps per day, plot a histogram and report mean and median
 
-```{r}
+```{r hist}
 dailysteps <- aggregate(steps~date, data = activity, FUN = "sum")
 hist(dailysteps$steps, main = "Histogram of Total Steps per Day", xlab = "Total Steps per Day")
 ```
@@ -31,7 +31,20 @@ median(dailysteps$steps)
 
 ## What is the average daily activity pattern?
 
+Calculate average for each interval, plot daily activity pattern and report interval with maximum number of steps.
+Note: Plot uses minutes past midnight instead of original intervals (military time) in order to prevent "jumps" at the hour boundaries.
 
+```{r daily}
+avgsteps <- aggregate(steps~intervalminutes + interval, data = activity, FUN = "mean")
+plot(avgsteps$intervalminutes, avgsteps$steps, type = "l", main = "Average Daily Activity", xlab = "Minutes", 
+     ylab = "Average Number of Steps")
+```
+
+Interval with maximum number of steps:
+
+```{r}
+avgsteps[which.max(avgsteps$steps),]
+```
 
 ## Imputing missing values
 
